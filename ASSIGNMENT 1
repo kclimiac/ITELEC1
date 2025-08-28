@@ -1,0 +1,54 @@
+package com.example.activitylifecycle
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+
+class MainActivity : AppCompatActivity() {
+
+    // TAG is just a label used so we can find our logs easily in Logcat
+    private val TAG = "MyActivity"
+
+    // 1. This method runs first when the Activity is created
+    //    - We usually set up the screen design (layout) and initialize variables here
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main) // connect to activity_main.xml layout
+        Log.d(TAG, "onCreate -> The activity is created")
+    }
+
+    // 2. Called when the Activity becomes visible on the screen
+    //    - The app is now showing, but the user cannot interact with it yet
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart -> The activity is now visible")
+    }
+
+    // 3. Called when the Activity is ready for the user
+    //    - The app is in the foreground and the user can now interact with it
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume -> The activity is running and user can use it")
+    }
+
+    // 4. Called when the Activity is partially hidden (like when another app opens)
+    //    - We can pause music, stop a video, or save temporary data here
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause -> The activity is paused (but not closed yet)")
+    }
+
+    // 5. Called when the Activity is completely hidden
+    //    - Good place to release resources (like camera, sensors, etc.)
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop -> The activity is stopped (not visible)")
+    }
+
+    // 6. Called when the Activity is destroyed/closed
+    //    - Last chance to clean up things (close database, stop background tasks)
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy -> The activity is destroyed")
+    }
+}
